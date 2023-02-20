@@ -1,8 +1,8 @@
+const table = document.querySelector("#result-table tbody");
+
 function bisectionMethod(func, a, b, tol, maxIteraciones = 1000) {
-  // Referencia a la tabla en el HTML
-  const table = document.getElementById("result-table");
   // Limpiar la tabla antes de agregar las nuevas filas
-  table.querySelector("tbody").innerHTML = "";
+  limpiarTabla();
 
   let fa = func(a);
   let fb = func(b);

@@ -91,10 +91,12 @@ function mostrarTabla() {
 }
 
 function limpiarTabla() {
-  // Referencia a la tabla en el HTML
-  const table = document.getElementById("result-table");
-  // Limpiar la tabla antes de agregar las nuevas filas
-  table.querySelector("tbody").innerHTML = "";
+  try {
+    const table = document.querySelector("#result-table tbody");
+    table.innerHTML = "";
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function convertirPotencia(str) {

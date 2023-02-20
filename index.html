@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/input.css" />
+    <link rel="stylesheet" href="css/button.css" />
+    <script
+      src="https://kit.fontawesome.com/00a734f883.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Metodo de bisección</title>
+  </head>
+  <body>
+    <h1>Metodo de bisección</h1>
+    <span>por Orlando Mina</span>
+    <div class="content">
+      <div class="input-group">
+        <label class="label">Máximo de iteraciones</label>
+        <input
+          autocomplete="off"
+          class="input"
+          type="number"
+          id="max-iteraciones"
+          name="max-iteraciones"
+          min="1"
+          value="1000"
+        />
+        <div></div>
+      </div>
+
+      <div class="input-group">
+        <label class="label">Función a evaluar</label>
+        <input
+          autocomplete="off"
+          class="input"
+          type="email"
+          id="funcion-input"
+        />
+        <div></div>
+      </div>
+
+      <div class="intervalos">
+        <p>Intervalos</p>
+        <div class="input-group">
+          <label class="label">Extremo izquierdo del intervalo</label>
+          <input autocomplete="off" class="input" type="number" id="a-input" />
+          <div></div>
+        </div>
+
+        <div class="input-group">
+          <label class="label">Extremo derecho del intervalo</label>
+          <input autocomplete="off" class="input" type="number" id="b-input" />
+          <div></div>
+        </div>
+      </div>
+
+      <button class="btn-shine" onclick="encontrarRaiz()">
+        <span>CALCULAR</span>
+      </button>
+
+      <div class="resultado__container" id="toast">
+        <p id="resultado">El resultado aparecra aqui</p>
+        <i class="fa-solid fa-xmark" onclick="esconderMensaje()"></i>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/bisection.js"></script>
+  </body>
+</html>

@@ -1,8 +1,13 @@
 const tol = 1e-6;
 const toast = document.getElementById("toast");
 let mensajeState = false;
+let tablaState = false;
+const aaa = document.getElementById("content");
 
 function encontrarRaiz() {
+  limpiarTabla();
+  aaa.classList.add("acortar");
+
   // Obtener la función a evaluar y los extremos del intervalo ingresados por el usuario
   let funcion = document.getElementById("funcion-input").value;
   let a = Number(document.getElementById("a-input").value);
@@ -20,6 +25,9 @@ function encontrarRaiz() {
   funcion = funcion.replace(/\(x\)|x\(/gi, "*x");
   funcion = funcion.replace(/\)x/gi, "x*");
 
+  // Reemplazar -( por -1*(
+  funcion = funcion.replace(/-\(/g, "-1*(");
+
   // Reemplazar x por *x para que la función sea válida
   funcion = funcion.replace(/(?<![+\-*/^xX\s])x/g, "*x");
 
@@ -27,7 +35,7 @@ function encontrarRaiz() {
   const newFuncion = convertirPotencia(funcion);
 
   // Evaluar la función utilizando eval()
-  let f = (x) => eval(newFuncion.replace(/x/gi, x)); // Reemplazar x por el valor de x y evaluar la función
+  let f = (x) => eval(newFuncion.replace(/x/gi, `(${x})`)); // Reemplazar x por el valor de x y evaluar la función
 
   let resultado = bisectionMethod(f, a, b, tol, maxIteraciones);
 
@@ -65,6 +73,23 @@ function esconderMensaje() {
   let toast = document.getElementById("toast");
   toast.classList.remove("resultado__container-show");
   toast.classList.remove("resultado__container-error");
+}
+
+function mostrarTabla() {
+  tablaState = true;
+  const table = document.getElementById("table-container");
+  if (tablaState) {
+    table.classList.remove("hide");
+  } else {
+    table.classList.add("hide");
+  }
+}
+
+function limpiarTabla() {
+  // Referencia a la tabla en el HTML
+  const table = document.getElementById("result-table");
+  // Limpiar la tabla antes de agregar las nuevas filas
+  table.querySelector("tbody").innerHTML = "";
 }
 
 function convertirPotencia(str) {

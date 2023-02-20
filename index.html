@@ -16,7 +16,7 @@
   <body>
     <h1>Metodo de bisección</h1>
     <span>por Orlando Mina</span>
-    <div class="content">
+    <div class="content" id="content">
       <div class="input-group">
         <label class="label">Máximo de iteraciones</label>
         <input
@@ -60,11 +60,77 @@
       <button class="btn-shine" onclick="encontrarRaiz()">
         <span>CALCULAR</span>
       </button>
+    </div>
 
-      <div class="resultado__container" id="toast">
-        <p id="resultado">El resultado aparecra aqui</p>
-        <i class="fa-solid fa-xmark" onclick="esconderMensaje()"></i>
-      </div>
+    <div class="result-table styled-table hide" id="table-container">
+      <table id="result-table">
+        <thead>
+          <tr>
+            <th>Iteración</th>
+            <th>a</th>
+            <th>b</th>
+            <th>c</th>
+            <th>f(c)</th>
+            <th>Error</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="resultado__container" id="toast">
+      <p id="resultado">El resultado aparecra aqui</p>
+      <i class="fa-solid fa-xmark" onclick="esconderMensaje()"></i>
+    </div>
+
+    <div class="descripcion">
+      <p>
+        El método de bisección es un algoritmo numérico que se utiliza para
+        encontrar la raíz de una función en un intervalo dado. El método
+        funciona dividiendo el intervalo inicial en dos subintervalos iguales y
+        luego determinando en cuál de los dos subintervalos se encuentra la
+        raíz. Este proceso se repite hasta que se alcanza una precisión deseada.
+      </p>
+      <p>
+        El método de bisección se basa en el teorema del valor intermedio, que
+        establece que si una función continua f(x) toma valores opuestos en dos
+        puntos a y b (es decir, f(a) y f(b) tienen signos opuestos), entonces la
+        función tiene al menos una raíz en el intervalo [a, b].
+      </p>
+
+      <p>El algoritmo del método de bisección se describe a continuación:</p>
+
+      <ol>
+        <li>Seleccionar un intervalo [a, b] que contenga la raíz deseada.</li>
+        <li>Calcular el punto medio c = (a + b) / 2.</li>
+        <li>Evaluar la función en el punto medio f(c).</li>
+        <li>
+          Si f(c) es igual a cero o es suficientemente pequeño (dentro de una
+          tolerancia dada), se ha encontrado la raíz y se detiene el proceso.
+        </li>
+        <li>
+          Si f(c) y f(a) tienen signos opuestos, la raíz se encuentra en el
+          subintervalo [a, c]. Se repite el proceso desde el paso 2 usando el
+          intervalo [a, c].
+        </li>
+        <li>
+          Si f(c) y f(b) tienen signos opuestos, la raíz se encuentra en el
+          subintervalo [c, b]. Se repite el proceso desde el paso 2 usando el
+          intervalo [c, b].
+        </li>
+        <li>
+          Si f(c) y f(a) tienen el mismo signo que f(b), se debe seleccionar un
+          nuevo intervalo [a, b] que contenga la raíz. Esto se puede hacer
+          moviendo el punto a o el punto b hacia el punto medio c, dependiendo
+          de cuál de los dos tenga el mismo signo que f(c). El proceso se repite
+          desde el paso 1 con el nuevo intervalo.
+        </li>
+      </ol>
+      <p>
+        El método de bisección es un método simple y robusto para encontrar la
+        raíz de una función, pero puede ser lento en comparación con otros
+        métodos más avanzados.
+      </p>
     </div>
 
     <script src="js/app.js"></script>

@@ -8,7 +8,12 @@ function bisectionMethod(func, a, b, tol, maxIteraciones = 1000) {
   let fb = func(b);
 
   if (fa * fb >= 0) {
-    throw new Error("La función no cambia de signo en el intervalo dado.");
+    mostrarMensaje(
+      "La función no cambia de signo en el intervalo dado.",
+      "error"
+    );
+    return;
+    // throw new Error("La función no cambia de signo en el intervalo dado.");
   }
 
   mostrarTabla();
@@ -27,7 +32,6 @@ function bisectionMethod(func, a, b, tol, maxIteraciones = 1000) {
   row.insertCell().textContent = (b - a) / 2;
 
   while (Math.abs(fc) > tol && contadorIteraciones < maxIteraciones) {
-
     if (fc * fa < 0) {
       b = c;
       fb = fc;

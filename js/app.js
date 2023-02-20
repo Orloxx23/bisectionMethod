@@ -2,17 +2,19 @@ const tol = 1e-6;
 const toast = document.getElementById("toast");
 let mensajeState = false;
 let tablaState = false;
-const aaa = document.getElementById("content");
+const form = document.getElementById("content");
 
 function encontrarRaiz() {
-  limpiarTabla();
-  aaa.classList.add("acortar");
-
   // Obtener la función a evaluar y los extremos del intervalo ingresados por el usuario
   let funcion = document.getElementById("funcion-input").value;
   let a = Number(document.getElementById("a-input").value);
   let b = Number(document.getElementById("b-input").value);
   let maxIteraciones = Number(document.getElementById("max-iteraciones").value);
+
+  if (a > b) {
+    mostrarMensaje("El intervalo es incorrecto.", "error");
+    return;
+  }
 
   // Validar la entrada del usuario
   let expresionRegular = /^[-+*\/\s\d()xX^.]+$/; // Permitir solo los caracteres válidos
@@ -20,6 +22,9 @@ function encontrarRaiz() {
     mostrarMensaje("La función ingresada es inválida.", "error");
     return;
   }
+
+  limpiarTabla();
+  form.classList.add("acortar");
 
   // Reemplazar (x) o x( por *x y )x por x*
   funcion = funcion.replace(/\(x\)|x\(/gi, "*x");

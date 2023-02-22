@@ -1,3 +1,4 @@
+const table = document.querySelector("#result-table tbody");
 const tol = 1e-6;
 const toast = document.getElementById("toast");
 let mensajeState = false;
@@ -25,6 +26,9 @@ function encontrarRaiz() {
 
   limpiarTabla();
   form.classList.add("acortar");
+
+  // Reemplazar e por el valor numérico de Euler
+  funcion = funcion.replace(/e/gi, Math.E);
 
   // Reemplazar (x) o x( por *x y )x por x*
   funcion = funcion.replace(/\(x\)|x\(/gi, "*x");
@@ -91,12 +95,22 @@ function mostrarTabla() {
 }
 
 function limpiarTabla() {
-  try {
-    const table = document.querySelector("#result-table tbody");
-    table.innerHTML = "";
-  } catch (error) {
-    console.error(error);
-  }
+  table.innerHTML = "";
+}
+
+function agregarFila(contadorIteraciones, a, b, c, fc, error, errort) {
+  const row = table.insertRow();
+  row.insertCell().textContent = contadorIteraciones;
+  row.insertCell().textContent = a;
+  row.insertCell().textContent = b;
+  row.insertCell().textContent = c;
+  row.insertCell().textContent = fc;
+  row.insertCell().textContent = `${error} ${
+    error === "" ? "" : "(" + (error * 100).toFixed(2) + "%)"
+  }`;
+  row.insertCell().textContent = `${errort} ${
+    errort === "" ? "" : "(" + (errort * 100).toFixed(2) + "%)"
+  }`;
 }
 
 function convertirPotencia(str) {

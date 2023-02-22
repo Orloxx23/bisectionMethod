@@ -1,5 +1,3 @@
-const table = document.querySelector("#result-table tbody");
-
 function bisectionMethod(func, a, b, tol, maxIteraciones = 1000) {
   // Limpiar la tabla antes de agregar las nuevas filas
   limpiarTabla();
@@ -19,17 +17,12 @@ function bisectionMethod(func, a, b, tol, maxIteraciones = 1000) {
   mostrarTabla();
 
   let c = (a + b) / 2;
+  let cAnterior = c;
   let fc = func(c);
 
   let contadorIteraciones = 0;
 
-  const row = table.insertRow();
-  row.insertCell().textContent = contadorIteraciones;
-  row.insertCell().textContent = a;
-  row.insertCell().textContent = b;
-  row.insertCell().textContent = c;
-  row.insertCell().textContent = fc;
-  row.insertCell().textContent = (b - a) / 2;
+  agregarFila(contadorIteraciones, a, b, c, fc, "", "");
 
   while (Math.abs(fc) > tol && contadorIteraciones < maxIteraciones) {
     if (fc * fa < 0) {
@@ -42,16 +35,15 @@ function bisectionMethod(func, a, b, tol, maxIteraciones = 1000) {
 
     c = (a + b) / 2;
     fc = func(c);
-    const error = (b - a) / 2;
+    // const error = (b - a) / 2;
+    const errorAproximado = Math.abs((c - cAnterior) / c);
+    console.log(errorAproximado);
+    const errorVerdadero = Math.abs(errorAproximado / c);
+    console.log(errorVerdadero);
 
-    const row = table.insertRow();
-    row.insertCell().textContent = contadorIteraciones + 1;
-    row.insertCell().textContent = a;
-    row.insertCell().textContent = b;
-    row.insertCell().textContent = c;
-    row.insertCell().textContent = fc;
-    row.insertCell().textContent = error;
+    agregarFila(contadorIteraciones + 1, a, b, c, fc, errorAproximado, errorVerdadero)
 
+    cAnterior = c;
     contadorIteraciones++;
   }
 
